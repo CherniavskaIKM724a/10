@@ -1,0 +1,53 @@
+#include <iostream>
+#include <cstdlib>
+#include <cstdio>
+#include <ctime>
+using namespace std;
+
+struct Work
+{
+    string surname;
+    int age;
+    string place_of_birth;
+};
+
+void print_data(Work person)
+{
+    cout<<"Surname: "<<person.surname<<endl;
+    cout<<"Place of birth: "<<person.place_of_birth<<endl;
+    cout<<"Age: "<<person.age<<endl;
+    cout<<endl;
+}
+int main()
+{
+    int i;
+    srand(time(0));
+    Work people[7];
+    people[0].surname= "Popov";
+    people[0].place_of_birth="Almaty";
+    people[1].surname= "Muller";
+    people[1].place_of_birth="Bonn";
+    people[2].surname= "Abylgaziev";
+    people[2].place_of_birth="Bishkek";
+    people[3].surname= "Hambardzumyan";
+    people[3].place_of_birth="Yerevan";
+    people[4].surname= "Tatarshvili";
+    people[4].place_of_birth="Batumi";
+    people[5].surname= "Yun";
+    people[5].place_of_birth="Shanghai";
+    people[6].surname= "Zulyar";
+    people[6].place_of_birth="Tehran";
+    for(i=0;i<7;i++)
+    {
+        people[i].age=18+rand()%18;
+        print_data(people[i]);
+
+    }
+    cout<<"Employee over 28 years of age: ";
+    for(i=0;i<7;i++)
+    {
+        if(people[i].age>28) cout<<people[i].surname<<" ";
+    }
+
+    return 0;
+}
