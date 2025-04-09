@@ -1,0 +1,78 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct BankAccount {
+    string ownerName;
+    string accountNumber;
+    double balance;
+//пополнение
+void deposit(double amount) {
+    if (amount > 0) {
+        balance += amount;
+        cout << "Сумма " << amount << " успешно внесена на счет." << endl;}
+    else {
+        cout << "Сумма должна быть положительной." << endl;}
+    }
+
+//снятие
+void output(double amount) {
+        if (amount > balance) {
+            cout << "Недостаточно средств на счете." << endl;}
+        else if (amount <= 0) {
+            cout << "Сумма должна быть положительной." << endl;}
+        else {
+            balance -= amount;
+            cout << "Сумма " << amount << " успешно снята со счета." << endl;
+        }
+    }
+
+//баланс
+    void showBalance() const {
+        cout << "Текущий баланс: " << balance << endl;
+    }
+};
+
+int main() {
+    setlocale(0,"");
+    // Создание
+    BankAccount account;
+    cout << "Введите имя владельца счета: ";
+    cin >> account.ownerName;
+    cout << "Введите номер счета: ";
+    cin >> account.accountNumber;
+    cout << "Введите начальный баланс: ";
+    cin >> account.balance;
+
+    // заполняем
+    while (true) {
+        cout<<"\nВыберите действие:"<<endl;
+        cout<<"1. Внести деньги"<<endl;
+        cout<<"2. Снять деньги"<<endl;
+        cout<<"3. Проверить баланс" << endl;
+        cout<<"4. Выйти"<<endl;
+
+        int choice;
+        cin >> choice;
+
+        if (choice == 1) {
+            double amount;
+            cout<<"Введите сумму для внесения: ";
+            cin>>amount;
+            account.deposit(amount);}
+        else if (choice == 2) {
+            double amount;
+            cout<<"Введите сумму для снятия: ";
+            cin>>amount;
+            account.output(amount);}
+        else if (choice == 3) {
+            account.showBalance();}
+        else if (choice == 4) {
+            cout << "До свидания!" << endl;
+            break;}
+        else {
+            cout << "Неверный выбор. Попробуйте снова." << endl;}
+    }
+
+    return 0;
+}
